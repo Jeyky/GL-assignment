@@ -23,7 +23,7 @@ f.txt:
 ```
   make
 ```
-##Run:
+## Run:
 ```
 ./main f.txt
 ```
