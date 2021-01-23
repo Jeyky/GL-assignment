@@ -5,6 +5,7 @@
 This program takes x and y coordinates of four points and tells if one of the points is in the triangle.
 The position of the points are checked by the z component of the cross product.
 ![alt text](img/cross_product.jpeg "Cross product")
+
 If the wanted point is inside of the triangle z components of all cross products will have the same sign. In case point placed on the other vector(side of the triangle) cross-product equals 0.  
 The program takes command-line arguments, files with coordinates inside. Also, the user can type in coordinates while program workflow if no command-line parameters were given.
 
