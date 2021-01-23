@@ -1,6 +1,6 @@
 # GL-assignment
 
-#About
+# About
 ************
 This program takes x and y coordinates of four points and tells if one of the points is in the triangle.
 The position of the points are checked by the z component of the cross product.
@@ -12,14 +12,14 @@ Example of parameters in file are given in f.txt file. Every 2 numbers are x,y c
 f.txt:
   x y x y x y x y
 
-#How to start
+# How to start
 ************
 
-##Clone the repository:
+## Clone the repository:
 ```
   git clone https://github.com/Jeyky/GL-assignment.git
 ```
-##Build:
+## Build:
 ```
   make
 ```
