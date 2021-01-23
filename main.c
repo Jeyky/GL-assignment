@@ -31,9 +31,9 @@ enum points {
  */
 struct triangle_points
 {
-	int **z;
-	int *x;
-	int *y;
+	float **z;
+	float *x;
+	float *y;
 	char **tr_name;
 };
 
@@ -116,12 +116,12 @@ int point_within_triangle(struct triangle_points *tr, int num)
  */
 void file_to_coordinates(struct triangle_points *tr, char *name)
 {
-	unsigned char *buffer;
+	char *buffer;
 	FILE *fp;
 	int flen;
 
 	if ((fp= fopen(name, "r")) == NULL) {
-       	fprintf(stderr, "An error occurred while opening file %s\n", name);
+       	fprintf(stderr, "An error occurred while opening the file %s\n", name);
        	exit(0);
     }
 
@@ -129,7 +129,7 @@ void file_to_coordinates(struct triangle_points *tr, char *name)
 	flen = ftell(fp);
 	rewind(fp);
 
-	buffer = (unsigned char *)malloc(flen * sizeof(*buffer));
+	buffer = (char *)malloc(flen * sizeof(*buffer));
 
 	fread(buffer, flen, 1, fp);
 	fclose(fp);
@@ -159,9 +159,9 @@ void print_message(struct triangle_points *tr)
 	for(int i = 0; i < NUM_OF_POINTS; i++) {
 		count_cross_product_z(tr, A_SYM + i, i);
 		if(point_within_triangle(tr, i)) 
-			printf("point %c inside the triangle %s\n", A_SYM + i, tr->tr_name[i]);
+			printf("point %c is inside the triangle %s\n", A_SYM + i, tr->tr_name[i]);
 		else
-			printf("point %c outside the triangle %s\n", A_SYM + i, tr->tr_name[i]);
+			printf("point %c is outside the triangle %s\n", A_SYM + i, tr->tr_name[i]);
 	}
 }
 
@@ -173,12 +173,12 @@ void print_message(struct triangle_points *tr)
  */
 void init_points(struct triangle_points *tr) 
 {
-	tr->x = calloc(NUM_OF_POINTS, sizeof(int));
-	tr->y = calloc(NUM_OF_POINTS, sizeof(int));
-	tr->z = calloc(NUM_OF_POINTS, sizeof(int *));
+	tr->x = calloc(NUM_OF_POINTS, sizeof(float));
+	tr->y = calloc(NUM_OF_POINTS, sizeof(float));
+	tr->z = calloc(NUM_OF_POINTS, sizeof(float *));
 	tr->tr_name = calloc(NUM_OF_POINTS, sizeof(char*));
 	for(int i = 0; i < NUM_OF_POINTS; i++) {
-		tr->z[i] = calloc(NUM_OF_SIDES, sizeof(int));
+		tr->z[i] = calloc(NUM_OF_SIDES, sizeof(float));
 		tr->tr_name[i] = calloc(NUM_OF_SIDES, sizeof(char));
 	}
 }
@@ -198,8 +198,8 @@ int main(int argc, char *argv[])
 	} else {												/** user types in coordinates during programs workflow */
 		for(int i = 0; i < NUM_OF_POINTS; i++) {
     		printf("enter point %c: ", A_SYM + i);
-    		scanf("%d %d", &tr_points.x[i], &tr_points.y[i]);
-    		printf("%c[%d;%d]\n", A_SYM + i, tr_points.x[i], tr_points.y[i]);
+    		scanf("%f %f", &tr_points.x[i], &tr_points.y[i]);
+    		printf("%c[%.1f;%.1f]\n", A_SYM + i, tr_points.x[i], tr_points.y[i]);
   		}
 	}
 	print_message(&tr_points);
