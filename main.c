@@ -152,9 +152,9 @@ void file_to_coordinates(struct triangle_points *tr, char *name)
  * Prints the status of a points.
  * @tr:  pointer to points structure.
  *
- * Run only after all calculations.
+ * Doing all needed calculations.
  */
-void print_message(struct triangle_points *tr)
+void check_points(struct triangle_points *tr)
 {
 	for(int i = 0; i < NUM_OF_POINTS; i++) {
 		count_cross_product_z(tr, A_SYM + i, i);
@@ -202,7 +202,7 @@ int main(int argc, char *argv[])
     		printf("%c[%.1f;%.1f]\n", A_SYM + i, tr_points.x[i], tr_points.y[i]);
   		}
 	}
-	print_message(&tr_points);
+	check_points(&tr_points);
 
 	return 0;
 }	
